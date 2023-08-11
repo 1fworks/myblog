@@ -4,7 +4,7 @@ description: >- # site description
   Game Developer :D
 lang: en-US # default lang
 timezone: Asia/Seoul # set your timezone
-image: /myblog/assets/img/avatar.png # This image used for Open Graph more info https://ogp.me/
+image: "https://1fworks.github.io/myblog/assets/img/avatar.png" # This image used for Open Graph more info https://ogp.me/
 repo: # site repo [optional]
 mode: dark # default theme "dark" | "light"
 
