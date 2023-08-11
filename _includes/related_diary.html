@@ -21,7 +21,7 @@
         {% endif %}
         <article class="post-item">
             <h4 class="post-item-title">
-                <a href="{{ p.url }}">{{ p.title | escape }}</a>
+                <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title | escape }}</a>
             </h4> 
         </article>
     {% endif %}

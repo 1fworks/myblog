@@ -8,7 +8,7 @@ image: /assets/img/avatar.png
 ---
 
 <figure>
-<img src="{{ page.image }}" alt="profile image" width="60%">
+<img src="{{ site.baseurl }}{{ page.image }}" alt="profile image" width="60%">
 <figcaption></figcaption>
 </figure>
 

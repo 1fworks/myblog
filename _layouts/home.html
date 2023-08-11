@@ -10,7 +10,7 @@ home: true
   <article class="post-item">
     <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
     <h4 class="post-item-title">
-      <a href="{{ post.url }}">{{ post.title | escape }}</a>
+      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title | escape }}</a>
     </h4>
   </article>
   {%- endfor -%}
@@ -19,7 +19,7 @@ home: true
     {% assign filtered_posts = site.posts | where:"tag", "pixelart" %}
     {%- for post in filtered_posts limit: site.number_of_posts_pixelart -%}
     <div class="item">
-      <a class="pixelart-tag" href="{{ post.url }}" style="border:0px">
+      <a class="pixelart-tag" href="{{ site.baseurl }}{{ post.url }}" style="border:0px">
         <div>
           <img class="pixelart-img" src="{{ post.img }}" alt={{ post.title | escape }}/>
         </div>
