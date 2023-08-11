@@ -5,6 +5,7 @@ description:
 date:       2023-07-10
 usemathjax: true
 tag:        "project"
+categories: project
 img:        "../posts/images/test.png"
 ---
 

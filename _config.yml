@@ -23,9 +23,9 @@ author:
   avatar: /assets/img/avatar.png # change with your own avatar
 
 # URL settings
-url: "https://1fworks.github.io/myblog" #
-baseurl: 
-permalink: /:title/
+url: "https://1fworks.github.io" #
+baseurl: "/myblog"
+permalink: /:categories/:title
 google_analytics: # leave it blank if not wish
 fb_appid:
 

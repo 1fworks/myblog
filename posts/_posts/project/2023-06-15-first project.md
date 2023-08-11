@@ -5,6 +5,7 @@ description:   "in progress."
 date:       2023-07-10
 usemathjax: true
 tag:        "project"
+categories: project
 img:        "https://picsum.photos/400/300"
 ---
 
