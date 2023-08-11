@@ -24,7 +24,7 @@ author:
 
 # URL settings
 url: "https://1fworks.github.io" #
-baseurl: "/myblog/"
+baseurl: "/myblog"
 permalink: /:categories/:title
 google_analytics: # leave it blank if not wish
 fb_appid:
