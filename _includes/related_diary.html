@@ -1,0 +1,32 @@
+<script>
+    function accordionClickHandler(){
+        const _accordion = document.querySelector(".accordion");
+        if(_accordion.style.height != "auto")
+            _accordion.style.height = "auto";
+        else
+            _accordion.style.height = "0px";
+    };
+</script>
+
+{% assign exists = false %}
+{% for p in site.posts %}
+    {% if p.related == page.title %}
+        {% if exists == false %}
+            {% assign exists = true %}
+            <div class="related-diary">
+                <h3 class="post-item-title">
+                    <a onclick="accordionClickHandler()">Related Diaries</a>
+                </h3>
+                <div class="accordion">
+        {% endif %}
+        <article class="post-item">
+            <h4 class="post-item-title">
+                <a href="{{ p.url }}">{{ p.title | escape }}</a>
+            </h4> 
+        </article>
+    {% endif %}
+{% endfor %}
+{% if exists == true %}
+    </div>
+</div>
+{% endif %}

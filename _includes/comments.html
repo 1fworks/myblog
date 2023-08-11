@@ -1,0 +1,38 @@
+<!-- unnecessary file, however you can still use for comment section, e.g disqus -->
+<section>
+  <div id="light-mode">
+    <script
+      src="https://utteranc.es/client.js"
+      repo="1fworks/myblog"
+      issue-term="pathname"
+      label="✨ comment ✨"
+      theme="github-light"
+      crossorigin="anonymous"
+      async
+    >
+    </script>
+  </div>
+
+  <div id="dark-mode">
+    <script
+      src="https://utteranc.es/client.js"
+      repo="1fworks/myblog"
+      issue-term="pathname"
+      label="✨ comment ✨"
+      theme="github-dark"
+      crossorigin="anonymous"
+      async
+    >
+    </script>
+  </div>
+
+  <script>
+    var uttLight = document.getElementById("light-mode");
+    var uttDark = document.getElementById("dark-mode");
+    let _theme = document.body.getAttribute("data-theme");
+    if(_theme == "dark")
+      uttLight.parentNode.removeChild(uttLight);
+    else
+      uttDark.parentNode.removeChild(uttDark);
+  </script>
+</section>
