@@ -526,3 +526,17 @@
 .study-myurl {
   text-align: right;
 }
+
+#study-list {
+  pre {
+    font-size: 0.9em;
+    width: 90%;
+    margin: auto;
+    background-color: #f0f0f0;
+    border-color: #808080;
+  }
+  img {
+    margin: auto;
+    display: block;
+  }
+}

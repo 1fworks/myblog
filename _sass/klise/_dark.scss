@@ -248,4 +248,11 @@ body[data-theme="dark"] {
   .related-diary {
     outline: solid 2px #2f2f2f;
   }
+
+  #study-list {
+    pre {
+      background-color: #1A1B21;
+      border-color: #808080;
+    }
+  }
 }

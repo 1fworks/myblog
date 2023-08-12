@@ -11,13 +11,22 @@ comments: false
     <a href="https://velog.io/@{{ site.author.velog }}">List from my velog blog.</a>
   </h3>
 </div>
+<div id="study-list">
+
+</div>
 <script>
-  let rssData = fetch("{{ site.rssapi }}")
-  .then((res)=>{
-    console.log(res);
-  })
-  .catch((error)=>{
-    console.log(error);
+  const response = (async()=>{
+    let res = await fetch("{{ site.rssapi }}");
+    res = res.json();
+    return res;
+  })();
+  response.then((result)=>{
+    result.forEach(item=>{
+      console.log(item.content, typeof(item.content));
+      document.getElementById("study-list").innerHTML +=
+      '<article class="post-item"><h2 class="post-item-title">'+item.title+'</h2></article>'
+      +'<div class="page-content" itemprop="articleBody">'+item.content+'<div>';
+    })
   });
 </script>
 <!-- <article class="post-item">
