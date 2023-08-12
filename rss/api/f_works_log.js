@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
     let parser = new Parser();
     let ary = new Array();
     (async () => {
+        res.setHeader("Content-Type", "text/html");
         await parser.parseURL('https://api.velog.io/rss/@f_works')
         .then((data)=>{
             data.items.forEach(item => {

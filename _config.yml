@@ -30,6 +30,7 @@ permalink: /:categories/:title
 google_analytics: # leave it blank if not wish
 fb_appid:
 image_location: /myblog/posts/images
+rssapi: "https://f-works.vercel.app/api/f_works_log"
 
 # Collection setting
 collections:
