@@ -14,7 +14,7 @@ comments: false
 <script>
   let rssData = fetch("{{ site.rssapi }}")
   .then((res)=>{
-    console.log(rssData);
+    console.log(res);
   })
   .catch((error)=>{
     console.log(error);
