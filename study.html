@@ -12,25 +12,77 @@ comments: false
   </h3>
 </div>
 <div id="study-list">
-
+  <div id="study-load">LOADING...</div>
 </div>
 <script>
+  const halfOpacity = ()=>{
+    let check = false;
+    document.querySelectorAll(".study-title").forEach((element)=>{
+      check = check || element.value;
+    });
+    document.querySelectorAll(".study-title").forEach((element)=>{
+      if(check){
+        if(!element.value){
+          element.style.opacity = "0.2";
+        }
+        else element.style.opacity = "1";
+      }
+      else element.style.opacity = "1";
+    });
+  };
+  const backClickHandler = ()=>{
+    document.querySelectorAll(".study-content").forEach((element)=>{
+      element.style.height = "0";
+    });
+    document.querySelectorAll(".study-title").forEach((element)=>{
+      element.style.background="#00000000";
+      element.style.fontSize="1em";
+      element.value = false;
+      element.style.opacity = "1";
+    });
+  };
+  const clickHandler = (e)=>{
+    e.currentTarget.value = !e.currentTarget.value;
+    document.querySelectorAll(".study-content").forEach((element)=>{
+      if(element.title === e.currentTarget.title && e.currentTarget.value){
+        element.style.height = "auto";
+      }
+      else element.style.height = "0";
+    });
+    document.querySelectorAll(".study-title").forEach((element)=>{
+      if(element.title === e.currentTarget.title){
+        if(e.currentTarget.value){
+          element.style.background="linear-gradient(to bottom, #8080801f, #00000000)";
+          element.style.fontSize="2em";
+          window.scrollBy({top: element.getBoundingClientRect().top, behavior: 'smooth'});
+        }
+        else{
+          element.style.background="#00000000";
+          element.style.fontSize="1em";
+          element.value = false;
+        }
+      }
+      else{
+        element.style.background="#00000000";
+        element.style.fontSize="1em";
+        element.value = false;
+      }
+    });
+    halfOpacity();
+  };
+
   const response = (async()=>{
     let res = await fetch("{{ site.rssapi }}");
     res = res.json();
+    document.getElementById("study-load").remove();
     return res;
   })();
   response.then((result)=>{
     result.forEach(item=>{
-      console.log(item.content, typeof(item.content));
       document.getElementById("study-list").innerHTML +=
-      '<article class="post-item"><h2 class="post-item-title">'+item.title+'</h2></article>'
-      +'<div class="page-content" itemprop="articleBody">'+item.content+'<div>';
-    })
+      '<div title="'+item.title+'" class="study-title" value="false"><article class="post-item"><h2 class="post-item-title">◆ '+item.title+'</h2></article></div>'
+      +'<div class="study-content" title="'+item.title+'" ><div class="page-content" itemprop="articleBody">'+item.content+'<div class="back" onclick="backClickHandler()">Back</div></div></div>';
+      document.querySelectorAll(".study-title").forEach(element=>{element.addEventListener("click", clickHandler);});
+    });
   });
 </script>
-<!-- <article class="post-item">
-  <h3 class="post-item-title">
-    <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title | escape }}</a>
-  </h3> 
-</article> -->

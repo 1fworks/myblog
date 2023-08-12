@@ -228,6 +228,7 @@
   display: flex;
   padding-top: 5px;
   padding-bottom: 6px;
+  transition: 0.2s;
   @extend %clearfix;
 
   &:not(:first-child) {
@@ -235,6 +236,7 @@
   }
 
   .post-item-date {
+    letter-spacing: 0em;
     min-width: 96px;
     color: $black;
     font-weight: 700;
@@ -252,6 +254,11 @@
     font-size: $base-font-size;
     font-weight: normal;
     letter-spacing: 0.1px;
+
+    transition: 0.2s;
+    &:hover {
+      letter-spacing: 0.1em;
+    }
     
     a {
       color: $text-base-color;
@@ -528,6 +535,45 @@
 }
 
 #study-list {
+  #study-load {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+  .study-title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 1em;
+    h2 {
+      margin-right:auto;
+      padding:0%;
+      text-align: center;
+      font-size: 1em;
+      transition: 0.2s;
+      font-weight: default;
+      &:hover{
+        letter-spacing: 0.1em;
+        font-weight: 700;
+      }
+    }
+  }
+  .study-content {
+    transition: 0.2s;
+    overflow: hidden;
+    height: 0px;
+    .back {
+      box-shadow: 0px 5px 5px -3px black;
+      color: white;
+      margin-top: 2em;
+      margin-bottom: 1em;
+      text-align: center;
+      background-color: $text-link-blue;
+      padding: 0.2em;
+      &:hover {
+        background-color: $text-link-blue-active;
+      }
+    }
+  }
   pre {
     font-size: 0.9em;
     width: 90%;
