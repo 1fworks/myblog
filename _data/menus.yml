@@ -14,6 +14,10 @@
   url: /myblog/project/
   external: false
 
+- title: Study
+  url: /myblog/study/
+  external: false
+
 - title: Search
   url: /myblog/search/
   external: false
