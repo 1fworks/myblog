@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
     (async () => {
         res.setHeader("Content-Type" , "text/html")
            .setHeader("Access-Control-Allow-Methods", "GET")
-           .setHeader("Access-Control-Allow-Origin", "*"); // *
+           .setHeader("Access-Control-Allow-Origin", "https://1fworks.github.io");
         await parser.parseURL('https://api.velog.io/rss/@f_works')
         .then((data)=>{
             data.items.forEach(item => {
-                ary.push({"title": item.title, "content": item.content,});
+                ary.push({"title": item.title, "content": item.content, "link": item.link});
             });
             res.json(ary);
         })

@@ -205,6 +205,8 @@
     padding-bottom: 10px;
 
     .post-title {
+      transition: all 0.2s ease-in-out;
+      letter-spacing: 0em;
       color: $black;
     }
 
@@ -213,6 +215,7 @@
       .post-title {
         color: $text-link-blue-active;
         opacity: 0.9;
+        letter-spacing: 0.1em;
       }
     }
 

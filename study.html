@@ -8,7 +8,7 @@ comments: false
 
 <div class="study-myurl">
   <h3 class="post-item-title">
-    <a href="https://velog.io/@{{ site.author.velog }}">List from my velog blog.</a>
+    <a href="https://velog.io/@{{ site.author.velog }}">List taken from my velog blog.</a>
   </h3>
 </div>
 <div id="study-list">
@@ -36,7 +36,6 @@ comments: false
     });
     document.querySelectorAll(".study-title").forEach((element)=>{
       element.style.background="#00000000";
-      element.style.fontSize="1em";
       element.value = false;
       element.style.opacity = "1";
     });
@@ -53,18 +52,15 @@ comments: false
       if(element.title === e.currentTarget.title){
         if(e.currentTarget.value){
           element.style.background="linear-gradient(to bottom, #8080801f, #00000000)";
-          element.style.fontSize="2em";
-          window.scrollBy({top: element.getBoundingClientRect().top, behavior: 'smooth'});
         }
         else{
           element.style.background="#00000000";
-          element.style.fontSize="1em";
           element.value = false;
         }
+        window.scrollBy({top: element.getBoundingClientRect().top, behavior: 'smooth'});
       }
       else{
         element.style.background="#00000000";
-        element.style.fontSize="1em";
         element.value = false;
       }
     });
@@ -80,8 +76,19 @@ comments: false
   response.then((result)=>{
     result.forEach(item=>{
       document.getElementById("study-list").innerHTML +=
-      '<div title="'+item.title+'" class="study-title" value="false"><article class="post-item"><h2 class="post-item-title">◆ '+item.title+'</h2></article></div>'
-      +'<div class="study-content" title="'+item.title+'" ><div class="page-content" itemprop="articleBody">'+item.content+'<div class="back" onclick="backClickHandler()">Back</div></div></div>';
+        '<div title="'+item.title+'" class="study-title" value="false"><article class="post-item"><h2 class="post-item-title">◆ '
+        +item.title
+        +'</h2></article></div>'
+
+        +'<div class="study-content" title="'
+        +item.title
+        +'" ><div class="page-content" itemprop="articleBody">'
+        +'<div style="text-align:right;">View at: <a href="'
+        +item.link
+        +'">velog.io</a></div>'
+        +item.content
+        +'<div class="back" onclick="backClickHandler()">Back</div>'
+        +'</div></div>';
       document.querySelectorAll(".study-title").forEach(element=>{element.addEventListener("click", clickHandler);});
     });
   });
