@@ -12,7 +12,7 @@ image: /assets/img/avatar.png
 <figcaption></figcaption>
 </figure>
 
-Developers who love pixels and make games.
+Developer who loves pixel and makes game.
 
 **Something you might want to know.**
 - twitter.com/{{ site.author.twitter }}
