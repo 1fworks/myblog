@@ -189,6 +189,20 @@
   h6 {
     @include relative-font-size(0.875);
   }
+
+
+  .title-image {
+    border-radius: 10px;
+  }
+  .game-description {
+    text-align: center;
+  }
+  .screenshot-list{
+    display: flex;
+    figure {
+      padding:10px;
+    }
+  }
 }
 
 .post-nav {
