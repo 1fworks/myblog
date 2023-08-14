@@ -12,7 +12,7 @@ comments: false
   </h3>
 </div>
 <div id="study-list">
-  <div id="study-load">LOADING...</div>
+  <div id="study-load">Loading...</div>
 </div>
 <script>
   const halfOpacity = ()=>{
@@ -68,12 +68,19 @@ comments: false
   };
 
   const response = (async()=>{
-    let res = await fetch("{{ site.rssapi }}");
-    res = res.json();
-    document.getElementById("study-load").remove();
-    return res;
+    try{
+      let res = await fetch("{{ site.rssapi }}");
+      res = res.json();
+      document.getElementById("study-load").remove();
+      return res;
+    }
+    catch (error){
+      document.getElementById("study-load").innerHTML = "Load failed :(<div style=\"font-size:0.7em;\">Check out the post from the link above!</div>";
+      return null;
+    }
   })();
   response.then((result)=>{
+    if(result === null) return;
     result.forEach(item=>{
       document.getElementById("study-list").innerHTML +=
         '<div title="'+item.title+'" class="study-title" value="false"><article class="post-item"><h2 class="post-item-title">◆ '

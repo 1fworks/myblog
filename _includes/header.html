@@ -132,6 +132,9 @@
   {% else %}
   <meta name="twitter:image" content="{{ site.image | absolute_url }}" />
   {% endif %} {% feed_meta %}
+  {% if site.google_site_verification %}
+    <meta name="google-site-verification" content="{{ site.google_site_verification }}" />
+  {% endif %}
   <link
     rel="apple-touch-icon"
     sizes="180x180"

@@ -10,7 +10,7 @@
 
 {% assign exists = false %}
 {% for p in site.posts %}
-    {% if p.related == page.title %}
+    {% if p.related == page.project_id %}
         {% if exists == false %}
             {% assign exists = true %}
             <div class="related-diary">

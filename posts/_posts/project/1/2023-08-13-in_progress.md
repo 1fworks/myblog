@@ -6,6 +6,7 @@ date:        2023-08-13
 usemathjax:  true
 tag:         "project"
 categories:  project
+project_id:  proj_02
 img:         "/myblog/posts/images/project/temp.png"
 ---
 
