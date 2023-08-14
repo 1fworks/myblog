@@ -28,7 +28,7 @@ url: "https://1fworks.github.io" #
 baseurl: "/myblog"
 permalink: /:categories/:title
 google_analytics: # leave it blank if not wish
-google_site_verification: 
+google_site_verification: RsAAO-TUsBv52hPBFNohU2PbBxJY0HHuESIbbcI8bgM
 fb_appid:
 image_location: /myblog/posts/images
 rssapi: "https://f-works.vercel.app/api/f_works_log"
