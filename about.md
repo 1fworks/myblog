@@ -15,10 +15,11 @@ image: /assets/img/avatar.png
 Developer who loves pixel and makes game.
 
 **Something you might want to know.**
-- twitter.com/{{ site.author.twitter }}
-- soundcloud.com/{{ site.author.soundcloud }}
-- gamejolt.com/@{{ site.author.gamejolt }}
-- github.com/{{ site.author.github }}
+- Twitter : [twitter.com/{{ site.author.twitter }}](https://twitter.com/{{ site.author.twitter }})
+- Soundcloud : [soundcloud.com/{{ site.author.soundcloud }}](https://soundcloud.com/{{ site.author.soundcloud }})
+- GameJolt : [gamejolt.com/@{{ site.author.gamejolt }}](https://gamejolt.com/@{{ site.author.gamejolt }})
+- Itch : [{{ site.author.itchio }}.itch.io](https://{{ site.author.itchio }}.itch.io)
+- Github : [github.com/{{ site.author.github }}](https://github.com/{{ site.author.github }})
 
 .
 .
