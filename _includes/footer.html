@@ -42,3 +42,43 @@
     });
   </script>
 {%- endif -%}
+
+<script>
+  var containers = document.querySelectorAll('.special-container');
+  containers.forEach((element)=>{
+      element.addEventListener('mouseleave', function(e){
+      var width = e.currentTarget.offsetWidth;
+      var height = e.currentTarget.offsetHeight;
+      e.currentTarget.children[0].style = `transform : perspective(${width}px) rotateY(0deg) rotateX(0deg)`;
+      });
+      element.addEventListener('mousemove', function(e){
+          var width = e.currentTarget.offsetWidth;
+          var height = e.currentTarget.offsetHeight;
+          var x = e.offsetX;
+          var y = e.offsetY;
+          
+          var rotateY = ((width - x)/width/0.5-1)*10;
+          var rotateX = ((height - y)/height/0.5-1)*10*(-1);
+          e.currentTarget.children[0].style = `transform : perspective(${width}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+  });
+
+  var containers_2 = document.querySelectorAll('.special-container-2');
+  containers_2.forEach((element)=>{
+      element.addEventListener('mouseleave', function(e){
+      var width = e.currentTarget.offsetWidth;
+      var height = e.currentTarget.offsetHeight;
+      e.currentTarget.children[0].style = `transform : perspective(${width}px) rotateY(0deg) rotateX(0deg)`;
+      });
+      element.addEventListener('mousemove', function(e){
+          var width = e.currentTarget.offsetWidth;
+          var height = e.currentTarget.offsetHeight;
+          var x = e.offsetX;
+          var y = e.offsetY;
+          
+          var rotateY = ((width - x)/width/0.5-1)*10;
+          var rotateX = ((height - y)/height/0.5-1)*10*(-1);
+          e.currentTarget.children[0].style = `transform : perspective(${width}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+  });
+</script>

@@ -77,12 +77,12 @@ layout: compress
     </main>
 
     {% if page.modified %}
-      <small class="post-updated-at">updated_at {{page.modified | date: "%d-%m-%Y"}}</small>
+      <small class="post-updated-at">>>> updated_at {{page.modified | date: "%d-%m-%Y"}}</small>
     {% endif %}
     <!-- {% if page.next or page.previous %} -->
       {% include navigation.html %}
     <!-- {% endif %} -->
-
+    
     {% if page.tag == "project" %}
       {% include related_diary.html %}
     {% endif %}

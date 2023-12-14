@@ -8,8 +8,10 @@ image: /assets/img/avatar.png
 ---
 
 <figure>
-<img src="{{ site.baseurl }}{{ page.image }}" alt="profile image" width="60%">
-<figcaption></figcaption>
+    <div class="special-container">
+        <img class="special-img" src="{{ site.baseurl }}{{ page.image }}" alt="profile image">
+    </div>
+    <figcaption></figcaption>
 </figure>
 
 Developer who loves pixel and makes game.
