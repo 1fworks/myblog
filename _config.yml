@@ -32,6 +32,7 @@ google_analytics: # leave it blank if not wish
 google_site_verification: RsAAO-TUsBv52hPBFNohU2PbBxJY0HHuESIbbcI8bgM
 fb_appid:
 image_location: /myblog/posts/images
+file_location: /myblog/posts/files
 rssapi: "https://f-works.vercel.app/api/f_works_log"
 
 # Collection setting
