@@ -53,5 +53,13 @@ img:         "/myblog/posts/images/project/copy_rabbit_thumbnail.png"
 
 ---
 
+Log  
+ver 1.0.0.1 : bugs fixed.
+
+<br/>
+<br/>
+
+---
+
 <h3>download ▼</h3>
 : [COPY_RABBIT.zip (Win)]({{site.file_location}}/COPY_RABBIT.zip)
