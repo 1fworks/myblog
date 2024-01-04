@@ -11,17 +11,17 @@ img:         "/myblog/posts/images/project/copy_rabbit_thumbnail.png"
 ---
 
 <figure>
-    <img class="title-image" src="{{site.image_location}}/project/copy_rabbit_title.png" alt="thumbnail img">
+    <img class="title-image" src="{{site.image_location}}/project/copy_rabbit_title.png" alt="title img">
 </figure>
 
 >> Created for the event [제 1회 KGMC Education잼](https://cafe.naver.com/crazygm/226059).
 
 <div class="screenshot-list">
     <figure>
-        <img class="screenshot" src="{{site.image_location}}/project/copy_rabbit_screenshot_01.png" alt="thumbnail img">
+        <img class="screenshot" src="{{site.image_location}}/project/copy_rabbit_screenshot_01.png" alt="screenshot img 1">
     </figure>
     <figure>
-        <img class="screenshot" src="{{site.image_location}}/project/copy_rabbit_screenshot_02.png" alt="thumbnail img">
+        <img class="screenshot" src="{{site.image_location}}/project/copy_rabbit_screenshot_02.png" alt="screenshot img 2">
     </figure>
 </div>
 

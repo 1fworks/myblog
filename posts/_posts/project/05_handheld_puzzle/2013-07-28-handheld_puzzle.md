@@ -11,17 +11,17 @@ img:         "/myblog/posts/images/project/handheld_puzzle_thumbnail.png"
 ---
 
 <figure>
-    <img class="title-image" src="{{site.image_location}}/project/handheld_puzzle_title.png" alt="thumbnail img">
+    <img class="title-image" src="{{site.image_location}}/project/handheld_puzzle_title.png" alt="title img">
 </figure>
 
 >> puzzle game
 
 <div class="screenshot-list">
     <figure>
-        <img class="screenshot" src="{{site.image_location}}/project/handheld_puzzle_screenshot_01.png" alt="thumbnail img">
+        <img class="screenshot" src="{{site.image_location}}/project/handheld_puzzle_screenshot_01.png" alt="screenshot img 1">
     </figure>
     <figure>
-        <img class="screenshot" src="{{site.image_location}}/project/handheld_puzzle_screenshot_02.png" alt="thumbnail img">
+        <img class="screenshot" src="{{site.image_location}}/project/handheld_puzzle_screenshot_02.png" alt="screenshot img 2">
     </figure>
 </div>
 

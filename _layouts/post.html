@@ -74,6 +74,26 @@ layout: compress
         </div>
       </article>
 
+      <div id="myModal" class="modal">
+        <img class="modal-content">
+        <div id="modal-caption"></div>
+      </div>
+      <script>
+        var modal = document.getElementById("myModal");
+        modal.onclick = ()=>{ modal.style.display = "none"; };
+        var img = document.querySelectorAll("img");
+        var modalImg = document.querySelector(".modal-content");
+        var captionText = document.getElementById("modal-caption");
+        img.forEach(element => {
+          if(element.className !== "modal-content"){
+            element.onclick = function(){
+              modal.style.display = "block";
+              modalImg.src = this.src;
+              captionText.innerHTML = this.alt;
+            }
+          }
+        })
+      </script>
     </main>
 
     {% if page.modified %}
