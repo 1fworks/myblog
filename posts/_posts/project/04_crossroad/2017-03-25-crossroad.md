@@ -67,4 +67,5 @@ ver 2.0.0.1 : bugs fixed.
 ---
 
 <h3>download ▼</h3>
-: [CROSSROAD.zip (Win)]({{site.file_location}}/CROSSROAD.zip)
+<br/>
+<iframe frameborder="0" src="https://itch.io/embed/2454364?linkback=true&amp;border_width=2&amp;link_color=fa8b5b&amp;border_color=000000" width="554" height="169"><a href="https://f-works.itch.io/crossroad">CROSSROAD by _ = F = _</a></iframe>
