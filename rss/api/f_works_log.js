@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
     (async () => {
         res.setHeader("Content-Type" , "text/html")
            .setHeader("Access-Control-Allow-Methods", "GET")
-           .setHeader("Access-Control-Allow-Origin", "https://1fworks.github.io");
+           .setHeader("Access-Control-Allow-Origin", "https://attic.with-1f.work");
         await parser.parseURL('https://api.velog.io/rss/@f_works')
         .then((data)=>{
             data.items.forEach(item => {
