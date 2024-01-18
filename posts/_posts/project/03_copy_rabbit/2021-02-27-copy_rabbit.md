@@ -7,7 +7,7 @@ usemathjax:  true
 tag:         "project"
 categories:  project
 project_id:  proj_03
-img:         "/myblog/posts/images/project/copy_rabbit_thumbnail.png"
+img:         "/posts/images/project/copy_rabbit_thumbnail.png"
 ---
 
 <figure>

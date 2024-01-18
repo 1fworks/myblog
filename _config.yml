@@ -4,8 +4,8 @@ description: >- # site description
   Game Developer :D
 lang: en-US # default lang
 timezone: Asia/Seoul # set your timezone
-image: "https://1fworks.github.io/myblog/assets/img/avatar.png" # This image used for Open Graph more info https://ogp.me/
-repo: # site repo [optional]
+image: "https://attic.with-1f.work/assets/img/avatar.png" # This image used for Open Graph more info https://ogp.me/
+repo: 1fworks/myblog # github repo
 mode: dark # default theme "dark" | "light"
 
 # Profile settings
@@ -21,18 +21,18 @@ author:
   gamejolt: F_works
   itchio: f-works
   velog: f_works
-  email:  # email adress
-  avatar: /myblog/assets/img/avatar.png # change with your own avatar
+  email: contact@with-1f.work
+  avatar: /assets/img/avatar.png # change with your own avatar
 
 # URL settings
-url: "https://1fworks.github.io" #
-baseurl: "/myblog"
+url: "https://attic.with-1f.work"
+baseurl: 
 permalink: /:categories/:title
 google_analytics: # leave it blank if not wish
-google_site_verification: RsAAO-TUsBv52hPBFNohU2PbBxJY0HHuESIbbcI8bgM
+google_site_verification: 
 fb_appid:
-image_location: /myblog/posts/images
-file_location: /myblog/posts/files
+image_location: /posts/images
+file_location: /posts/files
 rssapi: "https://f-works.vercel.app/api/f_works_log"
 
 # Collection setting
@@ -97,3 +97,4 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-postfiles
+  - jekyll-redirect-from

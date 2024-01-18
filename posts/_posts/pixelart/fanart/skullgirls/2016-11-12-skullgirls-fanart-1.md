@@ -5,7 +5,7 @@ date:       2016-11-12
 usemathjax: true
 tag:        "pixelart"
 categories: pixelart
-img:        "/myblog/posts/images/fanart/2016-11_0.png"
+img:        "/posts/images/fanart/2016-11_0.png"
 ---
 
 <figure>

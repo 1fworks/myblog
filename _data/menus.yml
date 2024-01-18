@@ -1,29 +1,29 @@
 - title: Home
-  url: /myblog/
+  url: /
   external: false
 
 - title: Diary
-  url: /myblog/diary/
+  url: /diary/
   external: false
 
 - title: Pixel art
-  url: /myblog/pixelart/
+  url: /pixelart/
   external: false
 
 - title: Project
-  url: /myblog/project/
+  url: /project/
   external: false
 
 - title: Study
-  url: /myblog/study/
+  url: /study/
   external: false
 
 - title: Search
-  url: /myblog/search/
+  url: /search/
   external: false
 
 - title: About
-  url: /myblog/about/
+  url: /about/
   external: false # set true if you using external link, see below
 
 # Example:

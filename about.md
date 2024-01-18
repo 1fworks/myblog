@@ -36,4 +36,19 @@ Developer who loves pixel and makes game.
 .
 .
 
+**Email** : {{ site.author.email }}
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
 You can [report](http://github.com/1fworks/myblog/issues/new) if there is an broken link(s) or somethings else.

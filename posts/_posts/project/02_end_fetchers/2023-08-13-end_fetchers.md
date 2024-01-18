@@ -7,7 +7,7 @@ usemathjax:  true
 tag:         "project"
 categories:  project
 project_id:  proj_02
-img:         "/myblog/posts/images/project/end_fetchers_thumbnail.png"
+img:         "/posts/images/project/end_fetchers_thumbnail.png"
 ---
 
 > Project start date : 2023-08-13

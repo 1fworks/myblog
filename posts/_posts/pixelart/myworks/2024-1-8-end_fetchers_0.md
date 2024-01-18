@@ -5,7 +5,9 @@ date:       2024-1-8
 usemathjax: true
 tag:        "pixelart"
 categories: pixelart
-img:        "/myblog/posts/images/myworks/2024-1_1.png"
+img:        "/posts/images/myworks/2024-1_1.png"
+
+related:    proj_02
 ---
 
 <figure>

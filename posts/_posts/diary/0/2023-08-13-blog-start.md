@@ -5,6 +5,8 @@ date:       2023-08-13
 tag:        "diary"
 categories: diary
 usemathjax: true
+redirect_from:
+  - /myblog/posts/diary/blog-start
 
 related:    
 ---
