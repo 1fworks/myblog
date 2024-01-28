@@ -85,7 +85,7 @@ layout: compress
         var modalImg = document.querySelector(".modal-content");
         var captionText = document.getElementById("modal-caption");
         img.forEach(element => {
-          if(element.className !== "modal-content"){
+          if(element.className !== "modal-content" && element.parentElement.tagName !== "A"){
             element.onclick = function(){
               modal.style.display = "block";
               modalImg.src = this.src;

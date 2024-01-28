@@ -254,6 +254,8 @@
     font-size: $base-font-size;
     font-weight: normal;
     letter-spacing: 0.1px;
+    white-space: nowrap;
+    overflow: hidden;
 
     transition: 0.2s;
     &:hover {

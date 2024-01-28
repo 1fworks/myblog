@@ -241,6 +241,8 @@
     border-bottom: 0;
     font-weight: $bold-weight;
     padding-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
 
     .post-title {
       transition: all 0.2s ease-in-out;
