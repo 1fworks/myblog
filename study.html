@@ -8,95 +8,16 @@ comments: false
 
 <div class="study-myurl">
   <h3 class="post-item-title">
-    <a href="https://velog.io/@{{ site.author.velog }}">List taken from my velog blog.</a>
+    자잘하게 연구, 공부한 것들의 모음집
   </h3>
 </div>
-<div id="study-list">
-  <div id="study-load">Loading...</div>
-</div>
-<script>
-  const halfOpacity = ()=>{
-    let check = false;
-    document.querySelectorAll(".study-title").forEach((element)=>{
-      check = check || element.value;
-    });
-    document.querySelectorAll(".study-title").forEach((element)=>{
-      if(check){
-        if(!element.value){
-          element.style.opacity = "0.2";
-        }
-        else element.style.opacity = "1";
-      }
-      else element.style.opacity = "1";
-    });
-  };
-  const backClickHandler = ()=>{
-    document.querySelectorAll(".study-content").forEach((element)=>{
-      element.style.height = "0";
-    });
-    document.querySelectorAll(".study-title").forEach((element)=>{
-      element.style.background="#00000000";
-      element.value = false;
-      element.style.opacity = "1";
-    });
-  };
-  const clickHandler = (e)=>{
-    e.currentTarget.value = !e.currentTarget.value;
-    document.querySelectorAll(".study-content").forEach((element)=>{
-      if(element.title === e.currentTarget.title && e.currentTarget.value){
-        element.style.height = "auto";
-      }
-      else element.style.height = "0";
-    });
-    document.querySelectorAll(".study-title").forEach((element)=>{
-      if(element.title === e.currentTarget.title){
-        if(e.currentTarget.value){
-          element.style.background="linear-gradient(to bottom, #8080801f, #00000000)";
-        }
-        else{
-          element.style.background="#00000000";
-          element.value = false;
-        }
-        window.scrollBy({top: element.getBoundingClientRect().top, behavior: 'smooth'});
-      }
-      else{
-        element.style.background="#00000000";
-        element.value = false;
-      }
-    });
-    halfOpacity();
-  };
 
-  const response = (async()=>{
-    try{
-      let res = await fetch("{{ site.rssapi }}");
-      res = res.json();
-      document.getElementById("study-load").remove();
-      return res;
-    }
-    catch (error){
-      document.getElementById("study-load").innerHTML = "Load failed :(<div style=\"font-size:0.7em;\">Check out the post from the link above!</div>";
-      return null;
-    }
-  })();
-  response.then((result)=>{
-    if(result === null) return;
-    result.forEach(item=>{
-      document.getElementById("study-list").innerHTML +=
-        '<div title="'+item.title+'" class="study-title" value="false"><article class="post-item"><h2 class="post-item-title">◆ '
-        +item.title
-        +'</h2></article></div>'
-
-        +'<div class="study-content" title="'
-        +item.title
-        +'" ><div class="page-content" itemprop="articleBody">'
-        +'<div style="text-align:right;">View at: <a href="'
-        +item.link
-        +'">velog.io</a></div>'
-        +item.content
-        +'<div class="back" onclick="backClickHandler()">Back</div>'
-        +'</div></div>';
-      document.querySelectorAll(".study-title").forEach(element=>{element.addEventListener("click", clickHandler);});
-    });
-  });
-</script>
+{%- for post in site.posts -%}
+  {%- if post.tag == "study" -%}
+    <article class="post-item">
+      <h3 class="post-item-title">
+        <a href="{{ site.baseurl }}{{ post.url }}">▶ {{ post.title | escape }}</a>
+      </h3> 
+    </article>
+  {%- endif -%}
+{%- endfor -%}

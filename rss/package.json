@@ -1,6 +1,0 @@
-{
-  "main": "./api/index.js",
-  "dependencies": {
-    "rss-parser": "^3.13.0"
-  }
-}
