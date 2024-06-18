@@ -33,7 +33,7 @@ google_site_verification:
 fb_appid:
 image_location: /posts/images
 file_location: /posts/files
-rssapi: "https://f-works.vercel.app/api/f_works_log"
+rssapi:
 
 # Collection setting
 collections:

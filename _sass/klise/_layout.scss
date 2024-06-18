@@ -181,7 +181,7 @@
 
 // Author
 .author {
-  margin-top: 6.3rem;
+  margin-top: 3.2rem;
   margin-bottom: 3.2rem;
   text-align: center;
 
@@ -190,16 +190,12 @@
   }
 
   .author-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    user-select: none;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
     background-color: $black;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -webkit-animation: 0.5s ease-in forwards fadein;
-    animation: 0.5s ease-in forwards fadein;
     opacity: 1;
+    user-select: none;
   }
 
   .author-name {
@@ -523,8 +519,10 @@
   outline: solid 2px #f0f0f0;
   border-radius: 10px;
   .post-item-title {
+    padding-left: 2em;
     margin-left:auto;
     margin-right:10%;
+    overflow: hidden;
   }
   .accordion {
     overflow: hidden;
