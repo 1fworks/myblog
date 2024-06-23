@@ -232,6 +232,99 @@
       padding:10px;
     }
   }
+
+  .wave-player{
+    div.error-txt{
+      width: 100%;
+      text-align: center;
+    }
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    background-color: rgb(230,230,230);
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    div.audioTrack{
+      flex-direction: row;
+      align-items: center;
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+      div.audioCanvasDiv{
+        display: flex;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        canvas {
+          cursor: pointer;
+          margin: 0px;
+          width: 100%;
+          height: 100%;
+          min-height: 60px;
+          max-height: 150px;
+          color: black;
+          --active-color: #ff6600;
+          --temp-color: #ffa365;
+          --current-color: #ff1100;
+          background-color: rgba(0,0,0,0);
+          overflow: hidden;
+        }
+      }
+      div{
+        display: flex;
+        margin: auto;
+        small {
+          width: 60px;
+          max-width: 60px;
+          text-align: center;
+          white-space: nowrap;
+          font-size: $small-font-size - 2;
+          color: $gray;
+          opacity: 0.8;
+          -webkit-user-select:none;
+          -moz-user-select:none;
+          -ms-user-select:none;
+          user-select:none
+        }
+      }
+    }
+    div.audioButtonDiv{
+      margin-top: auto;
+      margin-bottom: auto;
+      flex-direction: row;
+      align-items: center;
+      display: flex;
+      justify-content: flex-start;
+      button {
+        padding: 10%;
+        img.buttonIcon {
+          --img-file-play: play-solid.svg;
+          --img-file-pause: pause-solid.svg;
+          width: 100%;
+          height: 100%;
+          fill: black;
+          opacity: 70%;
+        }
+        cursor: pointer;
+        margin-left: 10px;
+        background-color: rgb(230,230,230);
+        font-size: 0px;
+        border: none;
+        padding: 0px;
+        min-width: 30px;
+        min-height: 30px;
+      }
+    }
+  }
 }
 
 .post-nav {

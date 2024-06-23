@@ -263,4 +263,28 @@ body[data-theme="dark"] {
       }
     }
   }
+
+  .wave-player {
+    background-color: black;
+    div.audioTrack{
+      div.audioCanvasDiv{
+        canvas {
+          --active-color: #ff5277;
+          --temp-color: #8f2e43;
+          --current-color: #ff2957;
+          color: rgb(230,230,230);
+        }
+      }
+    }
+    div.audioButtonDiv{
+      button {
+        img.buttonIcon {
+          --img-file-play: dark-play-solid.svg;
+          --img-file-pause: dark-pause-solid.svg;
+          fill: white;
+        }
+        background-color: black;
+      }
+    }
+  }
 }

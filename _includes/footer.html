@@ -82,3 +82,320 @@
       });
   });
 </script>
+
+<script>
+  class WavePlayer{
+    audioBuffer = undefined;
+    init = false;
+    isMouseOverCanvas = false;
+    mouseX = -100;
+    
+    constructor(music_name, canvas, audio, audioData, startTimeTxt, endTimeTxt){
+      this.startTimeTxt = startTimeTxt;
+      this.endTimeTxt = endTimeTxt;
+      
+      this.color = window.getComputedStyle(canvas ,null).getPropertyValue('color');
+      this.color1 = window.getComputedStyle(canvas ,null).getPropertyValue('--active-color');
+      this.color2 = window.getComputedStyle(canvas ,null).getPropertyValue('--temp-color');
+      this.color3 = window.getComputedStyle(canvas ,null).getPropertyValue('--current-color');
+      
+      this.music_name = music_name;
+      this.canvas = canvas;
+      this.canvasCtx = this.canvas.getContext('2d');
+      
+      this.audio = audio;
+      this.audio.addEventListener('play', ()=>{this.initAudioContent();});
+      this.audio.addEventListener('pause', ()=>{this.update(true);});
+      this.canvas.addEventListener('mouseup', (e)=>{
+        for(var i=0;i<audio_ary.length;i++){
+          audio_ary[i].audio.pause();
+          audio_ary[i].audio.currentTime = 0;
+        }
+        if(this.init){
+          this.audio.currentTime = this.mouseX / this.canvas.width * this.audio.duration;
+        }
+        this.audio.play();
+      });
+      this.canvas.addEventListener('mouseenter', (e)=>{this.isMouseOverCanvas = true;});
+      this.canvas.addEventListener('mouseleave', (e) => {
+        this.isMouseOverCanvas = false;
+        this.update(true);
+      });
+      this.canvas.addEventListener('mousemove', (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        this.mouseX = e.clientX - rect.left;
+        if(this.audio.paused){
+          this.update(true);
+        }
+      });
+      
+      this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.getDecodeAudioData(audioData);
+    }
+
+    initAudioContent(){
+      if(this.init) return;
+      this.init = true;
+      this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      this.source = this.audioCtx.createMediaElementSource(this.audio);
+      this.analyser = this.audioCtx.createAnalyser();
+      this.source.connect(this.analyser);
+      this.analyser.connect(this.audioCtx.destination);
+      
+      this.analyser.fftSize = 2048;
+      this.bufferLength = this.analyser.frequencyBinCount;
+      this.dataArray = new Uint8Array(this.bufferLength);
+    }
+
+    async getDecodeAudioData(data){
+      const arrayBuffer = await data.arrayBuffer();
+      var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      await audioCtx.decodeAudioData(arrayBuffer)
+      .then(audioBuffer => {
+          this.audioBuffer = audioBuffer;
+          this.update(true);
+        }
+      );
+    }
+
+    logspace(start, stop, n, max){
+        return start * Math.pow(stop/start, n/(max-1));
+    }
+
+    endTimeUpdate(){
+      if(this.endTimeTxt.textContent == "00:00"){
+        if(!isNaN(this.audio.duration)){
+          let duration = Math.round(this.audio.duration);
+          this.endTimeTxt.textContent = String(Math.floor(duration/60)).padStart(2, '0')+":"+String(duration%60).padStart(2, '0');
+        }
+      }
+    }
+
+    draw(){
+      this.endTimeUpdate();
+      let currentTime = Math.round(this.audio.currentTime);
+      this.startTimeTxt.textContent = String(Math.floor(currentTime/60)).padStart(2, '0')+":"+String(currentTime%60).padStart(2, '0');
+
+      this.canvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      if(this.init){
+        this.analyser.getByteFrequencyData(this.dataArray);
+      }
+      
+      var amp = this.canvas.height / 2;
+      if(this.isMouseOverCanvas)
+        this.canvasCtx.fillStyle = this.color2;
+      else if(this.audio.currentTime != 0 && this.audio.currentTime != this.audio.duration)
+        this.canvasCtx.fillStyle = this.color1;
+      else this.canvasCtx.fillStyle = this.color;
+      for (var i = 0; i < this.canvas.width; i++) {
+        if(i % 3 != 0) continue;
+        let min = 1.0;
+        let max = -1.0;
+        for(var channel=0;channel<this.audioBuffer.numberOfChannels;channel++){
+          let channelData = this.audioBuffer.getChannelData(channel);
+          let bufferLength = channelData.length;
+          let step = Math.ceil(bufferLength / this.canvas.width);
+          for (var j = 0; j < step; j++) {
+              var datum = channelData[(i * step) + j];
+              if (datum < min)
+                  min = datum;
+              if (datum > max)
+                  max = datum;
+          }
+        }
+        
+        let val = 0;
+        if(this.init){
+          let headpos = Math.min(this.logspace(1, this.bufferLength, 80 + i, this.canvas.width + 80), this.bufferLength - 1);
+          val = this.dataArray[Math.floor(headpos)] / 256;
+          if(Math.floor(headpos) + 1 < this.canvas.width)
+            val = val * (1 - Math.abs(headpos % 1)) + this.dataArray[Math.floor(headpos) + 1] / 256 * (Math.abs(headpos % 1));
+        }
+        min = Math.min(min, 0);
+        max = Math.max(max, 0);
+        if(-min < max) min = -max;
+        min = -min * 0.5;
+        min += val * 0.4;
+        if(this.init){
+          if(this.isMouseOverCanvas){
+            if(this.mouseX > i) this.canvasCtx.fillStyle = this.color1;
+            else this.canvasCtx.fillStyle = this.color2;
+          }
+          else if(this.audio.currentTime/this.audio.duration*this.canvas.width <= i){
+            this.canvasCtx.fillStyle = this.color;
+          }
+        }
+        this.canvasCtx.fillRect(i, amp * (1 - min) , 1, amp * (min * 2) + 1);
+      }
+      if(this.init){
+        if(this.audio.currentTime != 0 && !this.audio.paused){
+          this.canvasCtx.fillStyle = this.color3;
+          this.canvasCtx.fillRect(this.audio.currentTime/this.audio.duration*this.canvas.width-2, 0 , 2, this.canvas.height);
+        }
+        else if(this.isMouseOverCanvas){
+          this.canvasCtx.fillStyle = this.color;
+          this.canvasCtx.fillRect(this.mouseX-2, 0 , 2, this.canvas.height);
+        }
+      }
+    }
+    
+    fps = 30;
+    now;
+    then = Date.now();
+    interval = 1000/this.fps;
+    delta;
+    update(init = false){
+      this.now = Date.now();
+      this.delta = this.now - this.then;
+      if((!init && this.audio.paused == true) || this.audioBuffer == undefined){
+        return;
+      }
+      if(!init){
+        if(this.delta > this.interval){
+          this.then = this.now - (this.delta % this.interval);
+        }
+        else return;
+      }
+      this.draw();
+    }
+  }
+  
+  var audio_ary = [];
+  function wave_player(music_name, canvas, audio, audioData, startTimeTxt, endTimeTxt, Icon){
+    let wavePlayer = new WavePlayer(music_name, canvas, audio, audioData, startTimeTxt, endTimeTxt);
+    audio_ary.push(wavePlayer);
+    drawWave();
+    
+    function drawWave(){
+      requestAnimationFrame(drawWave);
+      let color = window.getComputedStyle(canvas, null).getPropertyValue('color');
+      let change = false;
+      if(wavePlayer.color !== color){
+        wavePlayer.color = color;
+        wavePlayer.color1 = window.getComputedStyle(canvas ,null).getPropertyValue('--active-color');
+        wavePlayer.color2 = window.getComputedStyle(canvas ,null).getPropertyValue('--temp-color');
+        wavePlayer.color3 = window.getComputedStyle(canvas ,null).getPropertyValue('--current-color');
+        if(wavePlayer.audio.paused)
+          Icon.src = "{{site.baseurl}}/assets/fontawesome/" + (window.getComputedStyle(Icon, null).getPropertyValue('--img-file-play'));
+        else
+          Icon.src = "{{site.baseurl}}/assets/fontawesome/" + (window.getComputedStyle(Icon, null).getPropertyValue('--img-file-pause'));
+        change = true;
+      }
+      wavePlayer.update(change);
+    }
+  }
+  
+  let audios = document.getElementsByClassName("wave-player");
+  for(let _i=0; _i < audios.length; _i++){
+    let music_url = audios[_i].dataset.music_url;
+    let error_txt = "<div class=\"error-txt\">"+audios[_i].dataset.error+"</div>";
+    let res = undefined;
+    fetch(music_url)
+    .then(response => {
+      if(!response.ok){ audios[_i].innerHTML = error_txt; return undefined; }
+      res = response.clone();
+      return response.blob();
+    })
+    .then(data => {
+      if(data == undefined) return;
+      let audioUrl = URL.createObjectURL(data);
+      let newAudio = new Audio(audioUrl);
+      newAudio.preload = "none";
+      let newBtn = document.createElement("button");
+      newBtn.className = "audioButton";
+      let newIcon = document.createElement("img");
+      newIcon.className = "buttonIcon";
+      let newDiv_0 = document.createElement("div");
+      newDiv_0.className = "audioButtonDiv";
+      let newDiv_1 = document.createElement("div");
+      newDiv_1.className = "audioTrack";
+      let newDiv_2 = document.createElement("div");
+      newDiv_2.className = "audioCanvasDiv";
+      let newCanvas = document.createElement("canvas");
+      newCanvas.className = "audioCanvas";
+      let newDiv_3 = document.createElement("div");
+      newDiv_3.className = "audioSmallDiv";
+      let newDiv_4 = document.createElement("div");
+      newDiv_4.className = "audioSmallDiv";
+      let newSmallText_0 = document.createElement("small");
+      newSmallText_0.innerHTML = "00:00";
+      let newSmallText_1 = document.createElement("small");
+      newSmallText_1.innerHTML = "00:00";
+      newBtn.onclick = function(){
+        if (newAudio.paused) {
+          for(var i=0;i<audio_ary.length;i++){
+            audio_ary[i].audio.pause();
+            audio_ary[i].audio.currentTime = 0;
+          }
+          newAudio.play();
+        } else {
+          for(var i=0;i<audio_ary.length;i++){
+            audio_ary[i].audio.currentTime = 0;
+          }
+          newAudio.pause();
+        }
+      };
+      newAudio.onplay = function(){
+        newIcon.src = "{{site.baseurl}}/assets/fontawesome/" + (window.getComputedStyle(newIcon, null).getPropertyValue('--img-file-pause'));
+      };
+      newAudio.onpause = function(){
+        newIcon.src = "{{site.baseurl}}/assets/fontawesome/" + (window.getComputedStyle(newIcon, null).getPropertyValue('--img-file-play'));
+      };
+      audios[_i].innerHTML = null;
+      audios[_i].appendChild(newAudio);
+      newBtn.appendChild(newIcon);
+      newDiv_0.appendChild(newBtn);
+      newDiv_3.appendChild(newSmallText_0);
+      newDiv_4.appendChild(newSmallText_1);
+      newDiv_1.appendChild(newDiv_3);
+      newDiv_2.appendChild(newCanvas);
+      newDiv_1.appendChild(newDiv_2);
+      newDiv_1.appendChild(newDiv_4);
+      audios[_i].appendChild(newDiv_0);
+      audios[_i].appendChild(newDiv_1);
+      newBtn.style.width = Math.max(newBtn.parentElement.parentElement.clientWidth / 20, 30)+"px";
+      newBtn.style.height = Math.max(newBtn.parentElement.parentElement.clientWidth / 20, 30)+"px";
+      newDiv_2.style.height = Math.max(newBtn.parentElement.parentElement.clientWidth / 8, 60)+"px";
+      newCanvas.parentElement.style.height = Math.round(Math.max(newBtn.parentElement.parentElement.clientWidth / 8, 60))+"px";
+      newCanvas.parentElement.style.width = Math.round(newCanvas.parentElement.clientWidth)+"px";
+      newCanvas.width = newCanvas.parentElement.clientWidth;
+      newCanvas.height = newCanvas.parentElement.clientHeight;
+      newIcon.src = "{{site.baseurl}}/assets/fontawesome/" + (window.getComputedStyle(newIcon, null).getPropertyValue('--img-file-play'));
+      wave_player(music_url, newCanvas, newAudio, res, newSmallText_0, newSmallText_1, newIcon);
+    })
+    .catch((e) => {
+      console.log(e);
+      audios[_i].innerHTML = error_txt;
+    });
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  function resizeCanvas() {
+    const parent = document.querySelector('button.audioButton').parentElement.parentElement;
+    const size = Math.max(parent.clientWidth / 8, 60);
+    const btnSize = Math.max(parent.clientWidth / 20, 30);
+    let elements = document.querySelectorAll('button.audioButton');
+    elements.forEach(element => {
+      element.style.width = btnSize+"px";
+      element.style.height = btnSize+"px";
+    });
+    elements = document.querySelectorAll('div.audioCanvasDiv');
+    elements.forEach(element => {
+      element.style.height = Math.round(size)+"px";
+      element.style.width = "100%";
+      element.style.width = Math.round(element.clientWidth)+"px";
+    });
+    for(var i=0;i<audio_ary.length;i++){
+      let element = audio_ary[i].canvas;
+      let change = false;
+      if(element.width != element.parentElement.clientWidth || element.height != element.parentElement.clientHeight){
+        element.width = element.parentElement.clientWidth;
+        element.height = element.parentElement.clientHeight;
+        change = true;
+      }
+      if(change){
+        if(audio_ary[i].audio.paused) audio_ary[i].update(true);
+      }
+    }
+  }
+</script>
