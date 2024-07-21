@@ -371,9 +371,9 @@
 
   window.addEventListener('resize', resizeCanvas);
   function resizeCanvas() {
-    const parent = document.querySelector('button.audioButton').parentElement.parentElement;
-    const size = Math.max(parent.clientWidth / 8, 60);
-    const btnSize = Math.max(parent.clientWidth / 20, 30);
+    const main_page = document.querySelector('main.page-content');
+    const size = Math.max(main_page.clientWidth / 8, 60);
+    const btnSize = Math.max(main_page.clientWidth / 20, 30);
     let elements = document.querySelectorAll('button.audioButton');
     elements.forEach(element => {
       element.style.width = btnSize+"px";

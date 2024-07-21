@@ -18,6 +18,7 @@ Developer who loves pixel and makes game.
 
 **Something you might want to know.**
 - Twitter : [twitter.com/{{ site.author.twitter }}](https://twitter.com/{{ site.author.twitter }})
+- Instagram : [instagram.com/{{ site.author.instagram }}](https://instagram.com/{{ site.author.instagram }})
 - Soundcloud : [soundcloud.com/{{ site.author.soundcloud }}](https://soundcloud.com/{{ site.author.soundcloud }})
 - GameJolt : [gamejolt.com/@{{ site.author.gamejolt }}](https://gamejolt.com/@{{ site.author.gamejolt }})
 - Itch : [{{ site.author.itchio }}.itch.io](https://{{ site.author.itchio }}.itch.io)

@@ -277,6 +277,7 @@
           --current-color: #ff1100;
           background-color: rgba(0,0,0,0);
           overflow: hidden;
+          -webkit-tap-highlight-color: transparent;
         }
       }
       div{
@@ -322,6 +323,7 @@
         padding: 0px;
         min-width: 30px;
         min-height: 30px;
+        -webkit-tap-highlight-color: transparent;
       }
     }
   }

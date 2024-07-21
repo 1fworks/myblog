@@ -30,12 +30,23 @@ img:         "/posts/images/project/end_fetchers_thumbnail.png"
 
 <br/>
 <br/>
+
+> 짧은 트레일러
+
+<figure>
+    <div class="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/VySpCwxvRec?si=TfWfPX6kYwCIW9tJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+</figure>
+
 <br/>
+<br/>
+<br/>
+
+> 개발 중...
 
 <figure>
     <div class="special-container">
         <img class="special-img" src="{{site.image_location}}/project/end_fetchers_title.png" alt="thumbnail img">
     </div>
 </figure>
-
-> 개발 중...
