@@ -1,6 +1,6 @@
 <script>
     function accordionClickHandler(){
-        const _accordion = document.querySelector(".accordion");
+        const _accordion = document.querySelector(".related-diary-accordion");
         if(_accordion.style.height != "auto")
             _accordion.style.height = "auto";
         else
@@ -17,7 +17,7 @@
                 <h3 class="post-item-title">
                     <a onclick="accordionClickHandler()">Related Posts</a>
                 </h3>
-                <div class="accordion">
+                <div class="related-diary-accordion">
         {% endif %}
         <article class="post-item">
             <h4 class="post-item-title">

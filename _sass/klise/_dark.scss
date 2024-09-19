@@ -287,4 +287,10 @@ body[data-theme="dark"] {
       }
     }
   }
+
+  .diary-checkbox {
+    input {
+      accent-color: $dark-text-link-blue;
+    }
+  }
 }

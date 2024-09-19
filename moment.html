@@ -1,0 +1,26 @@
+---
+title: Moment
+permalink: /moment/
+layout: page
+excerpt: Moment Post.
+comments: false
+redirect_from:
+  - /myblog/moment/
+---
+
+<div class="study-myurl">
+  <h3 class="post-item-title">
+    짧고 간단한 글들의 모음
+  </h3>
+</div>
+
+{%- for post in site.posts -%}
+  {%- if post.tag == "moment" -%}
+    <article class="post-item">
+      <span class="post-item-date">{{ post.date | date: "%b %d, %Y" }}</span>
+      <h4 class="post-item-title">
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title | escape }}</a>
+      </h4> 
+    </article>
+  {%- endif -%}
+{%- endfor -%}

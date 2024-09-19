@@ -524,7 +524,14 @@
     margin-right:10%;
     overflow: hidden;
   }
-  .accordion {
+  .related-diary-accordion {
+    overflow: hidden;
+    height: 0px;
+  }
+}
+
+.accordion {
+  .post-item-content {
     overflow: hidden;
     height: 0px;
   }
@@ -585,4 +592,13 @@
     margin: auto;
     display: block;
   }
+}
+
+.diary-checkbox {
+  input {
+    accent-color: $text-link-blue;
+    margin-left: 1em;
+  }
+  display: flex;
+  justify-content: right;
 }
